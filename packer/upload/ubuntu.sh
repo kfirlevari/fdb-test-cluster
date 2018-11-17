@@ -22,12 +22,18 @@ dpkg-reconfigure tzdata
 
 # need to clean since images could have stale metadata
 apt-get clean && apt-get update
-apt-get install -y -qq build-essential python linux-aws sysstat iftop htop iotop ne
+apt-get install -y -qq build-essential python linux-aws sysstat iftop htop iotop ne default-jdk maven unzip
 
 # install fdbtop
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 apt-get install -y -qq nodejs
 npm install -g fdbtop
+
+#install protoc
+PROTOC_ZIP=protoc-3.3.0-linux-x86_64.zip
+curl -OL https://github.com/google/protobuf/releases/download/v3.3.0/$PROTOC_ZIP
+unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+rm -f $PROTOC_ZIP
 
 ######### FDB
 
@@ -50,6 +56,18 @@ sudo usermod -a -G foundationdb ubuntu
 # ensure correct permissions
 chown -R foundationdb:foundationdb /etc/foundationdb
 chmod -R ug+w /etc/foundationdb
+
+######### YCSB
+
+unzip -o /tmp/ycsb.zip -d /usr/local
+rm -r /usr/local/__MACOSX
+
+cd /usr/local/ycsb
+mvn -pl com.yahoo.ycsb:fdbrecordlayer-binding -am clean package -DskipTests -U
+chmod -R 777 /usr/local/ycsb
+
+mkdir /usr/local/etc/foundationdb/
+cp /etc/foundationdb/fdb.cluster /usr/local/etc/foundationdb/
 
 ######### Cleanup
 
