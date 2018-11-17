@@ -1,4 +1,7 @@
-
+# Diff from base project 
+1. Using us-west instead of eu-west
+2. Assuming YCSB.zip in uploads (based on zipped YCSB git)
+3. Add relevant installation instructions to packer
 
 # About
 
