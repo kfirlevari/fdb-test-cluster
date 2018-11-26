@@ -60,7 +60,7 @@ chmod -R ug+w /etc/foundationdb
 ######### YCSB
 
 unzip -o /tmp/ycsb.zip -d /usr/local
-rm -r /usr/local/__MACOSX
+mv /usr/local/ycsb-master /usr/local/ycsb
 
 cd /usr/local/ycsb
 mvn -pl com.yahoo.ycsb:foundationdb-binding -am clean package -DskipTests -U
