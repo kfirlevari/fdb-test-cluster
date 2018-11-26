@@ -63,11 +63,14 @@ unzip -o /tmp/ycsb.zip -d /usr/local
 rm -r /usr/local/__MACOSX
 
 cd /usr/local/ycsb
+mvn -pl com.yahoo.ycsb:foundationdb-binding -am clean package -DskipTests -U
 mvn -pl com.yahoo.ycsb:fdbrecordlayer-binding -am clean package -DskipTests -U
 chmod -R 777 /usr/local/ycsb
 
 mkdir /usr/local/etc/foundationdb/
 cp /etc/foundationdb/fdb.cluster /usr/local/etc/foundationdb/
+
+cp /tmp/*.sh /usr/local/ycsb/
 
 ######### Cleanup
 
