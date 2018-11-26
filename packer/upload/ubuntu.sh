@@ -22,7 +22,7 @@ dpkg-reconfigure tzdata
 
 # need to clean since images could have stale metadata
 apt-get clean && apt-get update
-apt-get install -y -qq build-essential python linux-aws sysstat iftop htop iotop ne default-jdk maven unzip
+apt-get install -y -qq build-essential python linux-aws sysstat iftop htop iotop ne default-jdk maven unzip bc
 
 # install fdbtop
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
