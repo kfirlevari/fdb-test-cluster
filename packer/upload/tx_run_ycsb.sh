@@ -2,15 +2,15 @@
 
 #Should be run from /usr/local/ycsb
 
-for operationcount in 100000 # 1000000
+for operationcount in 1000000 # 1000000
 do
     logsfoldername="logs.tx.op$operationcount.$(date +%Y.%h.%d)"
     mkdir ./"$logsfoldername"
-    for tnum in 75 100 10 25 50
+    for tnum in 50 #10 25 50
     do
-        for usefixmultiopsize in true false
+        for usefixmultiopsize in true # false
         do
-            for multiopsize in 50 100 5 10 25
+            for multiopsize in 5 50 #10 25 50
             do
                 for readprop in 1 0.5 0.95
                 do
